@@ -9,4 +9,4 @@ React Native 的列表增删改查
 
 2、Redux目前运用还不熟练，还不太清楚什么时候用它比较合适
 
-![image](https://github.com/Infiee/listDemo/demoGif/demo.gif )   
+![image](https://github.com/Infiee/listDemo/tree/master/demoGif/demo.gif )   
