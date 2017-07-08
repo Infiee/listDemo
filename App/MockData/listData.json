@@ -1,35 +1,30 @@
 {
   "list": [
     {
-      "id":0,
       "name": "小红",
       "age": 20,
       "gender": 1,
       "hobbies": ["运动","电影","美食","游戏","逛街"]
     },
     {
-      "id":1,
       "name": "小芳",
       "age": 21,
       "gender": 2,
       "hobbies": ["运动","游戏","逛街"]
     },
     {
-      "id":2,
       "name": "小刚",
       "age": 22,
       "gender": 3,
       "hobbies": ["运动","电影","美食"]
     },
     {
-      "id":3,
       "name": "小明",
       "age": 23,
       "gender": 1,
       "hobbies": ["运动","电影","美食"]
     },
     {
-      "id":4,
       "name": "小白兔",
       "age": 24,
       "gender": 2,

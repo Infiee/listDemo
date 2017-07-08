@@ -14,7 +14,6 @@ class ListItem extends React.Component {
   constructor(props) {
     super(props)
   }
-
   render() {
     // 获取组件上传递过来的属性值
     let rowData = this.props.itemData;
@@ -80,10 +79,11 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'pink'
+    backgroundColor: '#ab7a82'
   },
   itemDeleteText: {
-    fontSize: 14
+    fontSize: 14,
+    color:'#fff'
   }
 });
 

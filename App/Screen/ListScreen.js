@@ -12,60 +12,53 @@ import {
   StyleSheet
 } from 'react-native';
 
+import * as actions from '../Actions/Action';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
-// 导入模拟数据
-import mockData from '../MockData/listData.json';
-
-import _ from 'lodash';
 import ListItem from "../Components/ListItem";
 
 // ListScreen组件
 class ListScreen extends React.Component {
   constructor(props) {
     super(props);
-
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => {
-        r1 !== r2
-      }
-    });
-    this.state = {
-      dataSource: ds.cloneWithRows([])
-    };
+    // console.log('A',this.props);
     this._renderRow = this._renderRow.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(mockData.list)
-    })
+    // 获取列表数据action
+    this.props.actions.getList();
+    // console.log('获取的属性：', this.props);
   }
 
+  // 渲染列表行数据
   _renderRow(rowData, sectionID, rowID) {
     return (
       <ListItem itemData={rowData}
                 itemID={rowID}
-                deleteHandle={ (rowID, rowData) => {
-                  this._delete(rowID, rowData)
-                } }
+                onPressHandle={
+                  ()=>{alert('A')}
+                }
+                deleteHandle={
+                  ()=>{this._delete(rowData, sectionID, rowID)}
+                }
       />
     );
   }
 
   // 删除方法
-  _delete(rowID) {
-    mockData.list.splice(rowID, 1);
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(mockData.list)
-    })
+  _delete(rowData, sectionID, rowID) {
+    this.props.actions.removeList(rowID);
   }
 
   render() {
     const {navigate} = this.props.navigation;
+    const {listData} = this.props;
     return (
       <View style={styles.container}>
         <ListView
-          dataSource={this.state.dataSource}
+          dataSource={listData}
           renderRow={this._renderRow}
           showsVerticalScrollIndicator={true}
           automaticallyAdjustContentInsets={false}
@@ -115,4 +108,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListScreen;
+
+// 遍历state到属性
+function mapStateToProps(state) {
+  // console.log('获取到的状态:',state.listReducer.listData)
+  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+  return {
+    listData: ds.cloneWithRows(state.listReducer.listData)
+  };
+}
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListScreen);
