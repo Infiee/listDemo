@@ -26,7 +26,7 @@ class ListItem extends React.Component {
       <TouchableOpacity activeOpacity={1}
                         focusedOpacity={1}
                         style={styles.itemWrapper}
-                        onPress={ () => alert('B') }>
+                        onPress={ this.props.onPressHandle }>
         <View style={styles.itemHeader}>
           <Text style={styles.itemHeaderText}>
             {rowData.name}的个人信息

@@ -22,6 +22,8 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
 import {LabelInput} from '../Components/Label';
 
+import _ from 'lodash';
+
 const checkArray = [{
   checkText: '运动',
   checked: false
@@ -45,11 +47,19 @@ class AddScreen extends React.Component {
     this.state = {
       name: '',
       age: '',
-      hobbies: checkArray,
+      hobbies: _.cloneDeep(checkArray),
       gender: [{label: '男', value: 0}, {label: '女', value: 1}],
       genderValue: 0,
       genderValueIndex: 0,
     }
+  }
+
+  // 想了一天才记起来！
+  // 要想重置状态的关键在这里！
+  componentWillUnmount() {
+    this.setState({
+      hobbies: checkArray
+    })
   }
 
   // 保存
@@ -60,7 +70,7 @@ class AddScreen extends React.Component {
       !this.state.age ||
       !this.state.gender
     ) {
-      Alert.alert('请输入完整个人信息', null,
+      Alert.alert('请输入完整的个人信息', null,
         [{
           text: '确定',
           onPress: () => {
@@ -70,16 +80,16 @@ class AddScreen extends React.Component {
       );
       return
     }
-    console.log('表单数据：', this.state);
+    // console.log('表单数据：', this.state);
     this.props.actions.addList(this.state);
     goBack();
   }
 
   // checkbox事件
   _check(id) {
-    checkArray[id].checked = !checkArray[id].checked;
+    this.state.hobbies[id].checked = !this.state.hobbies[id].checked;
     this.setState({
-      hobbies: checkArray
+      hobbies: this.state.hobbies
     });
   }
 

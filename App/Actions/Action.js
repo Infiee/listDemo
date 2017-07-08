@@ -28,13 +28,22 @@ export const removeList = (id) => {
   }
 };
 
-export const updateList = (id, name, age, gender, hobbies) => {
+export const updateList = (itemObj, id) => {
   return {
     type: actionType.UPDATE_LIST,
-    id,
-    name,
-    age,
-    gender,
-    hobbies
+    itemObj,
+    id
   }
 };
+
+// export const getHobbies = () => {
+//   return {
+//     type: actionType.GET_HOBBIES
+//   }
+// };
+// export const checkHobbies = (id) => {
+//   return {
+//     type: actionType.CHECK_HOBBIES,
+//     id: id * 1
+//   }
+// };

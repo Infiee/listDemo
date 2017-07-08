@@ -3,7 +3,7 @@
  * Des: 导航器路由控制
  */
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
 
 // 列表页
 import ListScreen from '../Screen/ListScreen';
@@ -13,8 +13,9 @@ import AddScreen from '../Screen/AddScreen';
 import DetailScreen from '../Screen/DetailScreen';
 
 export const AppNavigator = StackNavigator({
-  ListScreen: { screen: ListScreen },
-  AddScreen: { screen: AddScreen },
+  ListScreen: {screen: ListScreen},
+  AddScreen: {screen: AddScreen},
+  DetailScreen: {screen: DetailScreen},
 });
 
 export default AppNavigator;

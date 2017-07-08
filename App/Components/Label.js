@@ -19,6 +19,9 @@ export const LabelInput = (props) => (
     <View style={styles.detailInputWrapper}>
       <TextInput
         multiline={false}
+        value={
+          props.inputVal
+        }
         style={styles.textInput}
         onChangeText={
           props.changeHandle

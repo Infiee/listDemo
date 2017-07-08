@@ -8,3 +8,7 @@ export const REMOVE_LIST = 'REMOVE_LIST';
 export const UPDATE_LIST = 'UPDATE_LIST';
 
 
+export const GET_HOBBIES = 'GET_HOBBIES';
+export const CHECK_HOBBIES = 'CHECK_HOBBIES';
+
+

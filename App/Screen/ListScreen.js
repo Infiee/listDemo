@@ -38,10 +38,17 @@ class ListScreen extends React.Component {
       <ListItem itemData={rowData}
                 itemID={rowID}
                 onPressHandle={
-                  ()=>{alert('A')}
+                  () => {
+                    this.props.navigation.navigate('DetailScreen', {
+                      itemData: rowData,
+                      itemId: rowID
+                    })
+                  }
                 }
                 deleteHandle={
-                  ()=>{this._delete(rowData, sectionID, rowID)}
+                  () => {
+                    this._delete(rowData, sectionID, rowID)
+                  }
                 }
       />
     );

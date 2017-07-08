@@ -26,7 +26,7 @@ const listReducer = (state = initListDataState, action) => {
       delete action.itemObj.genderValue;
       delete action.itemObj.genderValueIndex;
       action.itemObj.hobbies.map(function (item, idx) {
-        if(item.checked){
+        if (item.checked) {
           tempArray.push(item.checkText);
         }
       });
@@ -42,17 +42,60 @@ const listReducer = (state = initListDataState, action) => {
 
     // 更新列表数据
     case  actionType.UPDATE_LIST:
-      const newArray = [];
-      state.map(t => {
-        if (t.id !== action.id) {
-          newArray.push(t);
+      const updateTempArray = [];
+      action.itemObj.gender = action.itemObj.genderValue + 1;
+      delete action.itemObj.genderValue;
+      delete action.itemObj.genderValueIndex;
+      action.itemObj.hobbies.map(function (item, idx) {
+        if (item.checked) {
+          updateTempArray.push(item.checkText);
         }
       });
-      return newArray;
+      action.itemObj.hobbies = updateTempArray;
+      state.listData.splice(action.id, 1,action.itemObj);
+      return {...state};
     default:
       return state
   }
 };
+
+// const initAddState = {
+//   hobbies: [{
+//     checkText: '运动',
+//     checked: false
+//   }, {
+//     checkText: '电影',
+//     checked: false
+//   }, {
+//     checkText: '美食',
+//     checked: false
+//   }, {
+//     checkText: '游戏',
+//     checked: false
+//   }, {
+//     checkText: '逛街',
+//     checked: false
+//   }]
+// };
+//
+// const addReducer = (state = Object.assign({},initAddState), action) => {
+//   switch (action.type) {
+//     // 获取列表数据
+//     case actionType.GET_HOBBIES:
+//       return {
+//         ...state,
+//         initAddState
+//       };
+//     // check
+//     case actionType.CHECK_HOBBIES:
+//       state.hobbies[action.id].checked = !state.hobbies[action.id].checked;
+//       return {
+//         ...state
+//       };
+//     default:
+//       return state
+//   }
+// };
 
 // 合并reducer
 const AppReducer = combineReducers({
